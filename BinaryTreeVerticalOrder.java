@@ -5,14 +5,16 @@ import java.util.List;
 
 public class BinaryTreeVerticalOrder
 {
-	public List<List<Integer>> printVertcalOrder (TreeNode root)
+	public List<List<Integer>> verticalOrder (TreeNode root)
 	{				
 		HashMap<Integer, List<Integer>> map = new HashMap<>();
 		
-		populateList(root, map, 0);		
-		
 		List<List<Integer>> retList = new ArrayList<>();
 		
+		if(root == null) return retList;
+		
+		populateList(root, map, 0);		
+						
 		populateRetList(retList, map);
 		
 		return retList;
@@ -22,6 +24,7 @@ public class BinaryTreeVerticalOrder
 	private void populateRetList(List<List<Integer>> retList, HashMap<Integer, List<Integer>> map) 
 	{		
 		int minElem = Collections.min(map.keySet());
+		
 		int maxElem = Collections.max(map.keySet());
 		
 		for(int i = minElem; i <= maxElem; ++i)
@@ -42,8 +45,10 @@ public class BinaryTreeVerticalOrder
 		map.get(curLevel).add(root.val);
 		
 		populateList(root.left, map, curLevel - 1);
+		
 		populateList(root.right, map, curLevel + 1);
 	}
+
 
 	public static void main(String[] args)
 	{
@@ -57,6 +62,6 @@ public class BinaryTreeVerticalOrder
 		root.right.left.right = new TreeNode(8);
 		root.right.right.right = new TreeNode(9);
 		
-		System.out.println(new BinaryTreeVerticalOrder().printVertcalOrder(root));
+		System.out.println(new BinaryTreeVerticalOrder().verticalOrder(root));
 	}
 }

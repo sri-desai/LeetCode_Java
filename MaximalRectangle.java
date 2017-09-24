@@ -1,7 +1,9 @@
+import java.util.HashMap;
+import java.util.Map;
 
 public class MaximalRectangle
 {
-	/* Need to correct the code */
+	/* need to update the code */
 	public int maximalRectangle(char[][] matrix1) 
 	{
 		if(matrix1 == null || matrix1.length == 0 || matrix1[0].length == 0) return 0;
@@ -23,44 +25,43 @@ public class MaximalRectangle
 		
 		int maxRectangle = Integer.MIN_VALUE;
 		
-		for(int i = 0; i < matrix.length; ++i)
+		for(int col = 0; col < matrix[0].length; ++col)
 		{
-			for(int j = 0; j < matrix[0].length; ++j)
-			{
-				maxRectangle = Math.max(maxRectangle, getMaxRectangle(i, j, matrix));
-			}
+			int curRectangle = maxRectangleInsideCurCol(col, matrix);
+			
+			maxRectangle = Math.max(maxRectangle, curRectangle);
 		}
 		
 		return maxRectangle;
     }
 
-	private int getMaxRectangle(int row, int col, int[][] matrix) 
+	private int maxRectangleInsideCurCol(int col, int[][] matrix) 
 	{
-		int maxValue = 0;
+		Map<Integer, Integer> map = new HashMap<>();
 		
-		for(int i = row; i < matrix.length; ++i)
+		int curArea = 0;
+		
+		for(int row = 0; row < matrix.length; ++row)
 		{
-			/* it's ok if current value is more than last one */
-			if(matrix[i][col] == 0 || matrix[row][col] > matrix[i][col]) break;
-			
-			else maxValue += matrix[row][col];
+			map.put(matrix[row][col], 1 + map.getOrDefault(matrix[row][col], 0));
 		}
 		
-		return maxValue;
+		for(Integer curWidth : map.keySet())
+		{
+			curArea = Math.max(curArea, curWidth * map.get(curWidth));
+		}
+		
+		return curArea;
 	}
 
 	private void populateData(int row, int[][] matrix) 
 	{
 		
-		for(int i = matrix[0].length - 2; i >= 0; --i)
+		for(int i = matrix[row].length - 2; i >= 0; --i)
 		{
 			if(matrix[row][i] == 1)
 			{
 				matrix[row][i] = 1 + matrix[row][i + 1];
-			}
-			else
-			{
-				matrix[row][i] = 0;
 			}
 		}
 	}
