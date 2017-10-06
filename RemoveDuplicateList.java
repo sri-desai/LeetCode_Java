@@ -3,66 +3,58 @@ public class RemoveDuplicateList
 {
 	public ListNode deleteDuplicates(ListNode head) 
 	{
-		if(head == null)
-		{
-			return head;
-		}
+		ListNode newHead  = null;
+		ListNode tailNode = null;
 		
-		ListNode curNode  = head;
-		ListNode prevNode = null;
-		
-		long prevValueRemoved = Long.MAX_VALUE;
-		
-		while(curNode != null && curNode.next != null)
-		{
-			if(curNode.val == curNode.next.val)
+		while(head != null)
+		{			
+			if(!checkDuplicateAndRemove(head))
 			{
-				curNode.next = curNode.next.next;
-				
-				prevValueRemoved = curNode.val;
-			}
-			else
-			if(curNode.val == prevValueRemoved)
-			{
-				if(prevNode == null)
+				if(newHead == null)
 				{
-					head = curNode.next;
-					
-					curNode = curNode.next;
+					newHead  = head;
+					tailNode = newHead;
 				}
 				else
 				{
-					prevNode.next = curNode.next;
-					curNode = curNode.next;
+					tailNode.next = head;					
+					tailNode = tailNode.next;
 				}
 			}
-			else
-			{
-				prevNode = curNode;
-				curNode = curNode.next;
-			}
+			
+			head = head.next;
 		}
+		 
+		if(tailNode != null) tailNode.next = null;
 		
-		if(curNode != null && curNode.val == prevValueRemoved)
-		{
-			if(prevNode == null)
-			{
-				return prevNode;
-			}
-			else
-			{
-				prevNode.next = null;
-			}
-		}
-		
-		return head;
+		return newHead;
 	}
 	
+	private boolean checkDuplicateAndRemove(ListNode curNode) 
+	{
+		boolean isDupPresent = false;
+		
+		if(curNode != null && curNode.next != null)
+		{
+			while(curNode.next != null && curNode.val == curNode.next.val)
+			{
+				curNode.next = curNode.next.next;
+				
+				isDupPresent = true;
+			}
+		}
+		
+		return isDupPresent;
+	}
+
 	public static void main(String[] args)
 	{
 		ListNode head = new ListNode(1);
-		head.next = new ListNode(1);
+		head.next = new ListNode(2);
+		head.next.next = new ListNode(2);
 		
-		new ListRotate().linkDisplay(new RemoveDuplicateList().deleteDuplicates(head));
+		head = new RemoveDuplicateList().deleteDuplicates(head);
+		
+		System.out.println(head);
 	}
 }
