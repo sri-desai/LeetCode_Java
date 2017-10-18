@@ -1,1 +1,1 @@
-This repo contains source code to the many leet code problems
+This repo contains source code to the many of the Leet code problems
