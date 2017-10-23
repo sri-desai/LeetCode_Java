@@ -27,7 +27,7 @@ public class LetterCombination
 
 	private void populate(String appendStr, String digits, int curPos) 
 	{
-		if(curPos >= digits.length())
+		if(curPos == digits.length())
 		{
 			mainList.add(appendStr);
 			
