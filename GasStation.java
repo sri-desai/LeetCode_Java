@@ -1,7 +1,8 @@
+import java.util.HashSet;
+import java.util.Set;
 
 public class GasStation
 {
-	
 	public int canCompleteCircuit(int[] gas, int[] cost) 
 	{
 		if(gas == null || cost == null || gas.length == 0 || 
@@ -33,9 +34,6 @@ public class GasStation
 	
 	public static void main(String[] args)
 	{
-		int[] gas  = {99,98,97,100};
-		int[] cost = {100,100,100,97};
-		
-		System.out.println(new GasStation().canCompleteCircuit(gas, cost));
+		;
 	}
 }
