@@ -1,36 +1,37 @@
 import java.util.HashMap;
+import java.util.Map;
 
 public class CloneGraph
 {
-	private HashMap<Integer, UndirectedGraphNode> hashMap;
+	private Map<Integer, UndirectedGraphNode> visitedNodsCloneMap;
 	
 	public UndirectedGraphNode cloneGraph(UndirectedGraphNode node) 
 	{
-        hashMap = new HashMap<>();
+		visitedNodsCloneMap = new HashMap<>();
         
-        return getNewNode(node);
+        return getClonedGraph(node);
     }
 
-	private UndirectedGraphNode getNewNode(UndirectedGraphNode node) 
+	private UndirectedGraphNode getClonedGraph(UndirectedGraphNode node) 
 	{
 		if(node == null) return null;
 		
 		UndirectedGraphNode retNode;
 		
-		if(hashMap.containsKey(node.label))
+		if(visitedNodsCloneMap.containsKey(node.label))
 		{
-			retNode = hashMap.get(node.label);
+			retNode = visitedNodsCloneMap.get(node.label);
 			
 			return retNode;
 		}
 			
 		retNode = new UndirectedGraphNode(node.label);
 		
-		hashMap.put(node.label, retNode);
+		visitedNodsCloneMap.put(retNode.label, retNode);
 		
 		for(UndirectedGraphNode neighbor : node.neighbors)
 		{
-			retNode.neighbors.add(getNewNode(neighbor));
+			retNode.neighbors.add(getClonedGraph(neighbor));
 		}
 				
 		return retNode;
