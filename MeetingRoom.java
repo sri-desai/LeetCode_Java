@@ -29,7 +29,9 @@ public class MeetingRoom
         
         for(Interval curReservation : intervals)
         {
-        	while(!earlierEndTimeHeap.isEmpty() && earlierEndTimeHeap.peek().end <= curReservation.start)
+        	while(!earlierEndTimeHeap.isEmpty() && 
+        		  earlierEndTimeHeap.peek().end <= curReservation.start
+        		 )
         	{
         		earlierEndTimeHeap.remove();
         	}
