@@ -20,7 +20,8 @@ public class validateBST
 		
 		if(root.val > minVal && root.val < MaxVal)
 		{
-			return isBST(root.left, minVal, root.val) && isBST(root.right, root.val, MaxVal);
+			return isBST(root.left, minVal, root.val) && 
+				   isBST(root.right, root.val, MaxVal);
 		}
 		else
 		{
