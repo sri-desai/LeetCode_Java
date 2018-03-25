@@ -15,4 +15,12 @@ public class LowestCommonAncestor
 		return left == null ? right : right == null ? left : root;
 		
     }	
+	
+	public static void main(String[] args)
+	{
+		TreeNode root = new TreeNode(1);
+		root.left     = new TreeNode(2);
+		
+		System.out.println(new LowestCommonAncestor().lowestCommonAncestor(root, root, root.left));
+	}
 }

@@ -23,4 +23,48 @@ public class RotateImage
         	}
         }
     }
+	
+	public void rotate_Alt (int[][] matrix)
+	{
+		if(matrix == null || matrix.length == 0 || matrix[0].length == 0) return;
+		
+		for(int curRow = 0; curRow < matrix.length; ++curRow)
+		{
+			for(int curCol = curRow; curCol < matrix[curRow].length; ++curCol)
+			{
+				int temp = matrix[curRow][curCol];
+				matrix[curRow][curCol] = matrix[curCol][curRow];
+				matrix[curCol][curRow] = temp;
+			}
+		}
+		
+		for(int[] curRow : matrix)
+		{
+			int startCol = 0;
+			int endCol   = curRow.length - 1;
+			
+			while(startCol < endCol)
+			{
+				int temp = curRow[startCol];
+				curRow[startCol] = curRow[endCol];
+				curRow[endCol] = temp;
+				
+				++startCol;
+				--endCol;
+			}
+		}
+	}
+	
+	public static void main(String[] args)
+	{
+		int[][] matrix = {
+		                  {1,2,3},
+		                  {4,5,6},
+		                  {7,8,9}
+						 };
+		
+		new RotateImage().rotate_Alt(matrix);
+		
+		return;
+	}
 }

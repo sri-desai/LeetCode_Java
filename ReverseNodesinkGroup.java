@@ -3,20 +3,20 @@ public class ReverseNodesinkGroup
 {
 	private ListNode newHead;
 	
-	 public ListNode reverseKGroup(ListNode head, int k) 
-	 {
-		 if(head == null || k <= 1) return head;
-		 
-		 int count = countNodes(head);
-		 
-		 if(count < k) return head;
-		 
-		 newHead = null;
-		 
-		 reverseGroup(head, 0, count, k);
-		 
-		 return newHead;
-	 }
+	public ListNode reverseKGroup(ListNode head, int k) 
+	{
+		if(head == null || k <= 1) return head;
+		
+		int count = countNodes(head);
+		
+		if(count < k) return head;
+		
+		newHead = null;
+		
+		reverseGroup(head, 0, count, k);
+		
+		return newHead;
+	}
 
 	private ListNode reverseGroup(ListNode head, int curCount, int totalCount, int groupCount) 
 	{
@@ -24,10 +24,10 @@ public class ReverseNodesinkGroup
 		if(totalCount - curCount < groupCount) return head;
 		
 		ListNode tailNode = head;
-		
-		ListNode curNode = head;
+		ListNode curNode  = head;
 		ListNode prevNode = null;
 		ListNode nextNode = curNode.next;
+		
 		int count = groupCount;
 		
 		while(count-- > 0)
@@ -42,7 +42,7 @@ public class ReverseNodesinkGroup
 		
 		tailNode.next = reverseGroup(curNode, curCount + groupCount, totalCount, groupCount);		
 		
-		 return prevNode;
+		return prevNode;
 	}
 
 	private int countNodes(ListNode head) 

@@ -12,7 +12,7 @@ public class AdditiveNumber
 		List<String> numList = new ArrayList<>();
 		
 		return checkValidity(0, num.trim(), numList);
-    }
+    }      
 
 	private boolean checkValidity(int startPos, String num, List<String> numList)
 	{

@@ -1,4 +1,3 @@
-import java.util.HashSet;
 
 public class DiameterofBinaryTree
 {
@@ -8,7 +7,7 @@ public class DiameterofBinaryTree
     {
 		getDiameter(root);
 		
-		return curMax - 1;
+		return curMax == 0 ? 0 : curMax - 1;
     }
 
 	private int getDiameter(TreeNode root) 
@@ -23,36 +22,9 @@ public class DiameterofBinaryTree
 		return 1 + Math.max(leftPath, rightPath);		
 	}
 	
-	 public boolean isHappy(int n) 
-	 {
-		 HashSet<Integer> set = new HashSet<>();
-		 
-		 if(n < 0) n = n * -1;
-		 
-		 while(n > 1)
-		 {
-			 if(set.contains(n)) return false;
-			 
-			 set.add(n);
-			 
-			 int temp = n;
-			 int sum = 0;
-			 
-			 while(temp != 0)
-			 {
-				 sum += ((temp % 10) * (temp % 10));
-				 
-				 temp = temp / 10;
-			 }			
-			 
-			 n = sum;
-		 }
-		 
-		 return n == 1 ? true : false;
-	 }
 	 
 	 public static void main(String[] args)
 	 {
-		 System.out.println(new DiameterofBinaryTree().isHappy(19));
+		 ;
 	 }
 }

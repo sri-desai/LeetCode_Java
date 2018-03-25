@@ -9,11 +9,11 @@ public class RemoveNthNode
 		}
 		
 		ListNode dummyNode = new ListNode(0);
-		ListNode curNode = dummyNode;
-		ListNode nextNode = dummyNode;
 		dummyNode.next = head;
+		ListNode curNode = dummyNode;
+		ListNode nextNode = dummyNode;		
 		
-		for(int i = 0; i < n + 1; ++i)
+		for(int i = 0; i < n; ++i)
 		{
 			nextNode = nextNode.next;
 		}
